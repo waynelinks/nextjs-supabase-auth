@@ -1,6 +1,8 @@
 import { UserCredentials } from '@supabase/supabase-js'
+import axios from 'axios'
 
 import { supabase } from '@/lib'
+import { API_ENDPOINT } from '@/config'
 
 export const signInWithEmailPassword = async (data: UserCredentials) => {
   const { session, error } = await supabase.auth.signIn(data)
@@ -43,6 +45,15 @@ export const updateUserPassword = async (password: string) => {
   if (error) {
     throw new Error(error.message)
   }
+
+  return data
+}
+
+export const getUserByCookie = async () => {
+  const { data } = await axios({
+    url: API_ENDPOINT.AUTH.GET_USER_VIA_COOKIE,
+    method: 'GET',
+  })
 
   return data
 }
