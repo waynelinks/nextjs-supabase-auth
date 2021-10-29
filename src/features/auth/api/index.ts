@@ -1,4 +1,4 @@
-import { UserCredentials } from '@supabase/supabase-js'
+import { AuthSession, UserCredentials } from '@supabase/supabase-js'
 import axios from 'axios'
 
 import { supabase } from '@/lib'
@@ -48,6 +48,13 @@ export const updateUserPassword = async (password: string) => {
 
   return data
 }
+
+export const setAuthCookie = (data: AuthSession) =>
+  axios({
+    url: API_ENDPOINT.AUTH.SET_COOKIE,
+    method: 'POST',
+    data,
+  })
 
 export const getUserByCookie = async () => {
   const { data } = await axios({
