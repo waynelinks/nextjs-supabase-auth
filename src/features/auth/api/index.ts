@@ -20,6 +20,13 @@ export const signInWithGoogle = async () => {
   return session
 }
 
+export const signOut = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (error) {
+    throw new Error(error.message)
+  }
+}
+
 export const resetUserPassword = async (email: string) => {
   const { data, error } = await supabase.auth.api.resetPasswordForEmail(email, {
     redirectTo: '/update-password',
