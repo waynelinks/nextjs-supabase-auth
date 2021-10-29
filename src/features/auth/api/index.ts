@@ -10,3 +10,12 @@ export const signInLocal = async (data: UserCredentials) => {
 
   return session
 }
+
+export const resetUserPassword = async (email: string) => {
+  const { data, error} = await supabase.auth.api.resetPasswordForEmail(email, { redirectTo: '/update-password'})
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return data
+}
