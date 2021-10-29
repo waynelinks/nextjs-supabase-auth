@@ -19,3 +19,12 @@ export const resetUserPassword = async (email: string) => {
 
   return data
 }
+
+export const updateUserPassword = async (password: string) => {
+  const { data, error } = await supabase.auth.update({ password })
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return data
+}
