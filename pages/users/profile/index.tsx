@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 
-const Home: NextPage = () => {
+const Profile: NextPage = () => {
   return (
     <>
-      Home
+      Profile
     </>
   )
 }
 
-export default Home
+export default Profile
